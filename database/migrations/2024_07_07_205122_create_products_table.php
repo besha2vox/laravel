@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('SKU', 35)->unique();
             $table->text('description')->nullable();
             $table->float('price')->unsigned()->startingValue(1);
+            $table->unsignedSmallInteger('quantity')->default(0);
             $table->tinyInteger('discount')->unsigned()->default(0)->nullable();
             $table->tinyText('thumbnail');
             $table->timestamps();
