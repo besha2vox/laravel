@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Enums\Permissions\Account;
+use App\Enums\Permissions\Category;
+use App\Enums\Permissions\Order;
+use App\Enums\Permissions\Product;
+use App\Enums\Permissions\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+//        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+//
+//        $permissions = [
+//            ...Account::values(),
+//            ...User::values(),
+//            ...Order::values(),
+//            ...Product::values(),
+//            ...Category::values(),
+//        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $this->call(PermissionsAndRolesSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CategoryProductsSeeder::class);
     }
 }
