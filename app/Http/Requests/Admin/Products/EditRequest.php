@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Categories;
+namespace App\Http\Requests\Admin\Products;
 
 use App\Enums\Permissions\Product as Permission;
 use App\Models\Category;
@@ -24,10 +24,10 @@ class EditRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->route('category')->id;
+        $id = $this->route('product')->id;
 
         return [
-            'title' => ['required', 'string', 'min:2', 'max:50', Rule::unique('products', 'name')->ignore($id)],
+            'title' => ['required', 'string', 'min:2', 'max:50', Rule::unique('products', 'title')->ignore($id)],
         ];
     }
 }

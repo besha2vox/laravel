@@ -53,7 +53,7 @@ class CategoriesController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('admin/categories/index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class CategoriesController extends Controller
 
         $category->updateOrFail($data);
 
-        return redirect()->route('admin/categories/edit');
+        return redirect()->route('admin.categories.edit');
     }
 
     /**
@@ -78,6 +78,6 @@ class CategoriesController extends Controller
 
         $category->deleteOrFail();
 
-        return redirect()->route('admin/categories/index');
+        return redirect()->route('admin.categories.index');
     }
 }

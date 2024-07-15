@@ -4,11 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex align-items-center justify-content-center pt-5">
-                <form class="card w-50" method="POST" action="{{route('admin.products.update', $product)}}">
+                <form class="card w-50" method="POST" enctype="multipart/form-data" action="{{route('admin.products.update', $product)}}">
                     @csrf
-                    @method('PUT')
 
-                    <h5 class="card-header">Edit product</h5>
+                    <h5 class="card-header">Update product</h5>
                     <div class="card-body">
                         <div class="row mb-3">
                             <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Title') }}</label>
@@ -16,7 +15,7 @@
                             <div class="col-md-6">
                                 <input id="title" type="text"
                                        class="form-control @error('title') is-invalid @enderror" name="title"
-                                       value="{{ old('title') }}" required autofocus>
+                                       value="{{ old('title') ?? $product->title }}" required autofocus>
 
                                 @error('title')
                                 <span class="invalid-feedback" role="alert">
@@ -32,7 +31,7 @@
                             <div class="col-md-6">
                                 <input id="SKU" type="text"
                                        class="form-control @error('SKU') is-invalid @enderror" name="SKU"
-                                       value="{{ old('SKU') }}" required>
+                                       value="{{ old('SKU') ?? $product->SKU}}" required>
 
                                 @error('SKU')
                                 <span class="invalid-feedback" role="alert">
@@ -49,7 +48,7 @@
                             <div class="col-md-6">
                                     <textarea id="description" type="text"
                                               class="form-control" name="description"
-                                    >{{ old('description') }}</textarea>
+                                    >{{ old('description') ?? $product->description}}</textarea>
                             </div>
                         </div>
 
@@ -79,7 +78,7 @@
                             <div class="col-md-6">
                                 <input id="price" type="number"
                                        class="form-control @error('price') is-invalid @enderror" name="price"
-                                       value="{{ old('price') }}"
+                                       value="{{ old('price') ?? $product->price }}"
                                        step="any"
                                        required>
 
@@ -98,7 +97,7 @@
                             <div class="col-md-6">
                                 <input id="discount" type="number"
                                        class="form-control @error('discount') is-invalid @enderror" name="discount"
-                                       value="{{ old('discount') }}"
+                                       value="{{ old('discount') ?? $product->discount }}"
                                        step="any"
                                        min="0"
                                        max="99"
@@ -119,7 +118,7 @@
                             <div class="col-md-6">
                                 <input id="quantity" type="number"
                                        class="form-control @error('quantity') is-invalid @enderror" name="quantity"
-                                       value="{{ old('quantity') }}">
+                                       value="{{ old('quantity') ?? $product->quantity}}">
 
                                 @error('quantity')
                                 <span class="invalid-feedback" role="alert">
@@ -147,7 +146,7 @@
 
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-end">
-                        <button type="submit" class="btn btn-outline-success">Edit</button>
+                        <button type="submit" class="btn btn-outline-success">Create</button>
                     </div>
                 </form>
             </div>

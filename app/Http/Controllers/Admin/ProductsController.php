@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Permissions\Category as Permission;
+use App\Enums\Permissions\Product as Permission;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Products\CreateRequest;
+use App\Http\Requests\Admin\Categories\Request;
+use App\Http\Requests\Admin\Products\EditRequest;
 use App\Models\Category;
 use App\Models\Product;
-use App\Repositories\Contract\ProductsRepositoryContract;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
@@ -29,17 +29,16 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin/products/create', ['categories' => Category::select(['id', 'name'])->get()]);
+        return view('admin/products/create', ['products' => Product::select(['id', 'name'])->get()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateRequest $request, ProductsRepositoryContract $repository)
+    public function store(Request $request)
     {
-        if ($product = $repository->create($request)) {
-            return redirect()->route('admin.products.index');
-        }
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']);
 
         return redirect()->back()->withInput();
     }
@@ -50,24 +49,23 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         return view('admin/products/edit', [
-            'categories' => Product::select(['id', 'name'])
-                ->whereNot('id', $product->id)
-                ->get(),
-            'category' => $product
+            'products' => Product::select(['id', 'title'])->get(),
+            'product' => $product,
+            'categories' => Category::select()->get(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditProductRequest $request, Product $product)
+    public function update(EditRequest $request, Product $product)
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($data['name']);
 
         $product->updateOrFail($data);
 
-        return redirect()->route('admin.categories.edit', $product);
+        return redirect()->route('admin.products.edit', $product);
     }
 
     /**
@@ -79,6 +77,6 @@ class ProductsController extends Controller
 
         $product->deleteOrFail();
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.products.index');
     }
 }
