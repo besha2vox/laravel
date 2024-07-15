@@ -15,6 +15,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        body, input, select {
+            background-color: #e4e1d2 !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

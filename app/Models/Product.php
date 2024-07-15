@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Kyslik\ColumnSortable\Sortable;
 
+/**
+ * @mixin IdeHelperProduct
+ */
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $fillable = [
         'id',
@@ -22,7 +26,18 @@ class Product extends Model
         'quantity',
         'thumbnail',
         'created_at',
-        'updated_at',
+        'updated_at'
+    ];
+
+    public $sortable = [
+        'id',
+        'title',
+        'SKU',
+        'price',
+        'quantity',
+        'discount',
+        'created_at',
+        'updated_at'
     ];
 
     public function categories(): BelongsToMany
