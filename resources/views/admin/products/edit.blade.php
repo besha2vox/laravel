@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex align-items-center justify-content-center pt-5">
-                <form class="card w-50" method="POST" enctype="multipart/form-data" action="{{route('admin.products.update', $product)}}">
+                <form class="card w-50" method="POST" enctype="multipart/form-data"
+                      action="{{route('admin.products.update', $product)}}">
                     @csrf
 
                     <h5 class="card-header">Update product</h5>
@@ -55,12 +56,14 @@
                         <div class="row mb-3">
                             <label for="categories"
                                    class="col-md-4 col-form-label text-md-end">{{ __('Categories') }}</label>
-
                             <div class="col-md-6">
-                                <select name="categories[]" id="categories"
-                                        class="form-control @error('categories') is-invalid @enderror" multiple>
+                                <select name="categories[]" id="categories" class="form-control">
+                                    <option value="">No Category</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option
+                                            value="{{ $category->id }}" {{ in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'selected' : '' }}
+                                        >{{ $category->name }}
+                                        </option>
                                     @endforeach
                                 </select>
 

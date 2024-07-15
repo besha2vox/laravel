@@ -49,8 +49,7 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         return view('admin/products/edit', [
-            'products' => Product::select(['id', 'title'])->get(),
-            'product' => $product,
+            'product' => Product::with('categories:id')->findOrFail($product->id),
             'categories' => Category::select()->get(),
         ]);
     }
