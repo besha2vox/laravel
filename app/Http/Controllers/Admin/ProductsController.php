@@ -29,7 +29,11 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin/products/create', ['products' => Product::select(['id', 'name'])->get()]);
+        return view('admin/products/create', [
+                'products' => Product::select(['id', 'title'])->get(),
+                'categories' => Category::select()->get(),
+            ]
+        );
     }
 
     /**

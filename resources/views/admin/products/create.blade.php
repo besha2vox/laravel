@@ -57,11 +57,12 @@
                                    class="col-md-4 col-form-label text-md-end">{{ __('Categories') }}</label>
 
                             <div class="col-md-6">
-                                <select name="categories[]" id="categories"
+                                <select name="categories" id="categories"
                                         class="form-control @error('categories') is-invalid @enderror" multiple>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
+
                                 </select>
 
                                 @error('categories')

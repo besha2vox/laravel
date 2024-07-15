@@ -57,8 +57,7 @@
                             <label for="categories"
                                    class="col-md-4 col-form-label text-md-end">{{ __('Categories') }}</label>
                             <div class="col-md-6">
-                                <select name="categories[]" id="categories" class="form-control">
-                                    <option value="">No Category</option>
+                                <select name="categories[]" id="categories" class="form-control" multiple>
                                     @foreach($categories as $category)
                                         <option
                                             value="{{ $category->id }}" {{ in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'selected' : '' }}
