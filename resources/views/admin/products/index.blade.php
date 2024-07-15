@@ -7,15 +7,25 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>@sortablelink('id', 'ID')</th>
-                        <th>@sortablelink('title', 'Title')</th>
-                        <th>@sortablelink('SKU', 'SKU')</th>
-                        <th>@sortablelink('price', 'Price')</th>
-                        <th>@sortablelink('discount', 'Discount')</th>
+{{--                        <th>@sortablelink('id', 'ID')</th>--}}
+{{--                        <th>@sortablelink('title', 'Title')</th>--}}
+{{--                        <th>@sortablelink('SKU', 'SKU')</th>--}}
+{{--                        <th>@sortablelink('price', 'Price')</th>--}}
+{{--                        <th>@sortablelink('discount', 'Discount')</th>--}}
+{{--                        <th>Categories</th>--}}
+{{--                        <th>@sortablelink('quantity', 'Quantity')</th>--}}
+{{--                        <th>@sortablelink('created_at', 'Created At')</th>--}}
+{{--                        <th>@sortablelink('updated_at', 'Updated At')</th>--}}
+{{--                        <th>Actions</th>--}}
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Discount</th>
                         <th>Categories</th>
-                        <th>@sortablelink('quantity', 'Quantity')</th>
-                        <th>@sortablelink('created_at', 'Created At')</th>
-                        <th>@sortablelink('updated_at', 'Updated At')</th>
+                        <th>Quantity</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                         <th>Actions</th>
                     </tr>
                     </thead>

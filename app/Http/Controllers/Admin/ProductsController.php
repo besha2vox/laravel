@@ -49,8 +49,8 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin/categories/edit', [
-            'categories' => Category::select(['id', 'name'])
+        return view('admin/products/edit', [
+            'categories' => Product::select(['id', 'name'])
                 ->whereNot('id', $product->id)
                 ->get(),
             'category' => $product
@@ -60,7 +60,7 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditRequest $request, Product $product)
+    public function update(EditProductRequest $request, Product $product)
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($data['name']);
