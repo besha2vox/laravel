@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'phone',
+        'birthdate',
         'email',
         'password',
         'created_at',
